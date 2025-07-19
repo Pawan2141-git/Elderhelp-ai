@@ -35,4 +35,21 @@ router.get("/", async (req, res) => {
   }
 });
 
+// ✅ DELETE - Delete a volunteer
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const volunteer = await Volunteer.findByIdAndDelete(id);
+    
+    if (!volunteer) {
+      return res.status(404).json({ error: "❌ Volunteer not found." });
+    }
+    
+    res.json({ message: "✅ Volunteer deleted successfully!" });
+  } catch (error) {
+    console.error("❌ Volunteer DELETE error:", error);
+    res.status(500).json({ error: "❌ Error deleting volunteer." });
+  }
+});
+
 module.exports = router;

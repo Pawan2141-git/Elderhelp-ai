@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import "tailwindcss";
 
 /* 👇 Neumorphic Input Style - From Uiverse.io by Praashoo7 */
@@ -23,6 +24,300 @@
   width: 6px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #6366f1; /* Indigo */
+  background: #000000; /* Black */
   border-radius: 10px;
+}
+
+/* 👇 Enhanced Light/Dark Mode Theme Variables */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --accent-color: #000000;
+  --card-bg: #ffffff;
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --border-color: #e5e7eb;
+  --input-bg: #f9fafb;
+  --input-border: #d1d5db;
+  --button-primary: #000000;
+  --button-hover: #333333;
+  --gradient-primary: from-gray-900 to-black;
+  --gradient-secondary: from-black to-gray-800;
+}
+
+/* Light theme (default) */
+[data-theme="light"] {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --accent-color: #000000;
+  --card-bg: #ffffff;
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --border-color: #e5e7eb;
+  --input-bg: #f9fafb;
+  --input-border: #d1d5db;
+  --button-primary: #000000;
+  --button-hover: #333333;
+  --gradient-primary: from-gray-900 to-black;
+  --gradient-secondary: from-black to-gray-800;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --accent-color: #ffffff;
+  --card-bg: #111111;
+  --card-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06);
+  --border-color: #374151;
+  --input-bg: #1f2937;
+  --input-border: #4b5563;
+  --button-primary: #ffffff;
+  --button-hover: #e5e7eb;
+  --gradient-primary: from-white to-gray-100;
+  --gradient-secondary: from-gray-100 to-white;
+}
+
+/* Fallback for body class (for backward compatibility) */
+body.light {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --accent-color: #000000;
+  --card-bg: #ffffff;
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --border-color: #e5e7eb;
+  --input-bg: #f9fafb;
+  --input-border: #d1d5db;
+  --button-primary: #000000;
+  --button-hover: #333333;
+  --gradient-primary: from-gray-900 to-black;
+  --gradient-secondary: from-black to-gray-800;
+}
+
+body.dark {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --accent-color: #ffffff;
+  --card-bg: #111111;
+  --card-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06);
+  --border-color: #374151;
+  --input-bg: #1f2937;
+  --input-border: #4b5563;
+  --button-primary: #ffffff;
+  --button-hover: #e5e7eb;
+  --gradient-primary: from-white to-gray-100;
+  --gradient-secondary: from-gray-100 to-white;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Example card style for reference */
+.card {
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  border-radius: 1.2rem;
+  padding: 1.2rem 2rem;
+  border: 1px solid var(--border-color);
+}
+
+/* Accent color utility */
+.accent {
+  color: var(--accent-color);
+}
+
+/* From Uiverse.io by MuhammadHasann */
+.toggle-cont {
+  --primary: #54a8fc;
+  --light: #d9d9d9;
+  --dark: #121212;
+  --gray: #414344;
+
+  position: relative;
+  z-index: 10;
+
+  width: fit-content;
+  height: 20px; /* Reduced from 24px */
+
+  border-radius: 9999px;
+}
+
+.toggle-cont .toggle-input {
+  display: none;
+}
+
+.toggle-cont .toggle-label {
+  --gap: 2px; /* Reduced from 3px */
+  --width: 16px; /* Reduced from 20px */
+
+  cursor: pointer;
+
+  position: relative;
+  display: inline-block;
+
+  padding: 0.15rem; /* Reduced from 0.2rem */
+  width: calc((var(--width) + var(--gap)) * 2);
+  height: 100%;
+  background-color: var(--dark);
+
+  border: 1px solid #777777;
+  border-bottom: 0;
+
+  border-radius: 9999px;
+  box-sizing: content-box;
+  transition: all 0.3s ease-in-out;
+}
+.toggle-label::before {
+  content: "";
+
+  position: absolute;
+  z-index: -10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: calc(100% + 1rem); /* Reduced from 1.5rem */
+  height: calc(100% + 1rem); /* Reduced from 1.5rem */
+  background-color: var(--gray);
+
+  border: 1px solid #777777;
+  border-bottom: 0;
+  border-radius: 9999px;
+
+  transition: all 0.3s ease-in-out;
+}
+.toggle-label::after {
+  content: "";
+
+  position: absolute;
+  z-index: -10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+    circle at 50% -100%,
+    rgb(58, 155, 252) 0%,
+    rgba(12, 12, 12, 1) 80%
+  );
+
+  border-radius: 9999px;
+}
+
+.toggle-cont .toggle-label .cont-icon {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  width: var(--width);
+  height: 16px; /* Reduced from 20px */
+  background-image: radial-gradient(
+    circle at 50% 0%,
+    #666666 0%,
+    var(--gray) 100%
+  );
+
+  border: 1px solid #aaaaaa;
+  border-bottom: 0;
+  border-radius: 9999px;
+  box-shadow: inset 0 -0.15rem 0.15rem var(--primary),
+    inset 0 0 0.5rem 0.75rem var(--second);
+
+  transition: transform 0.3s ease-in-out;
+}
+
+.cont-icon {
+  overflow: clip;
+  position: relative;
+}
+
+.cont-icon .sparkle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  display: block;
+
+  width: calc(var(--width) * 1px);
+  aspect-ratio: 1;
+  background-color: var(--light);
+
+  border-radius: 50%;
+  transform-origin: 50% 50%;
+  rotate: calc(1deg * var(--deg));
+  transform: translate(-50%, -50%);
+  animation: sparkle calc(100s / var(--duration)) linear
+    calc(0s / var(--duration)) infinite;
+}
+
+@keyframes sparkle {
+  to {
+    width: calc(var(--width) * 0.5px);
+    transform: translate(2000%, -50%);
+  }
+}
+
+.cont-icon .icon {
+  width: 0.6rem; /* Reduced from 0.7rem */
+  fill: var(--light);
+}
+
+.toggle-cont:has(.toggle-input:checked) {
+  --checked: true;
+}
+
+@container style(--checked: true) {
+  .toggle-cont .toggle-label {
+    background-color: #41434400;
+
+    border: 1px solid #3d6970;
+    border-bottom: 0;
+  }
+
+  .toggle-cont .toggle-label::before {
+    box-shadow: 0 1rem 2.5rem -2rem #0080ff;
+  }
+
+  .toggle-cont .toggle-label .cont-icon {
+    overflow: visible;
+
+    background-image: radial-gradient(
+      circle at 50% 0%,
+      #045ab1 0%,
+      var(--primary) 100%
+    );
+
+    border: 1px solid var(--primary);
+    border-bottom: 0;
+
+    transform: translateX(calc((var(--gap) * 2) + 100%)) rotate(-225deg);
+  }
+
+  .toggle-cont .toggle-label .cont-icon .sparkle {
+    z-index: -10;
+
+    width: calc(var(--width) * 1.5px);
+    background-color: #acacac;
+
+    animation: sparkle calc(100s / var(--duration)) linear
+      calc(10s / var(--duration)) infinite;
+  }
+
+  @keyframes sparkle {
+    to {
+      width: calc(var(--width) * 0.5px);
+      transform: translate(2000%, -50%);
+    }
+  }
+
+  .toggle-cont .toggle-label .cont-icon .icon {
+    width: 0.6rem; /* Reduced from 0.7rem */
+    fill: var(--light);
+  }
 }

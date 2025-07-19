@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # 🏥 ElderHelp AI - Elder Care Platform
 
 A comprehensive web application designed to help elderly individuals access medical assistance and volunteer support through an intuitive interface.

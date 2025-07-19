@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🏥 ElderHelp AI - Elder Care Platform
 
 A comprehensive web application designed to help elderly individuals access medical assistance and volunteer support through an intuitive interface.
@@ -153,3 +154,7 @@ For support, email support@elderhelp.ai or create an issue in this repository.
 ---
 
 **Made with ❤️ for Elder Care** 
+=======
+# Elderhelp-ai
+ElderHelp AI - A comprehensive elder care platform with dashboard, volunteer management, and medicine delivery system built with React.js and Node.js
+>>>>>>> 7effc3d8bb0806931b5aa90dc6021bd430eb4691

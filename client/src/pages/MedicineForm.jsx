@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { User, Phone, MapPin, Pill, Clock, Send, AlertCircle, FileText } from 'lucide-react';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const MedicineForm = () => {
   const [formData, setFormData] = useState({
@@ -25,11 +27,30 @@ const MedicineForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate API call
+     
+    try {
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/medicine`, formData);
+      toast.success("✅ Medicine request submitted successfully!");
+      setFormData({
+    name: '',
+    age: '',
+    phone: '',
+    address: '',
+    medicineName: '',
+    prescription: '',
+    urgency: 'normal',
+    additionalNotes: ''
+  })
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("❌ Error submitting request. Please try again.");
+      
+      
+    }
+
     await new Promise(resolve => setTimeout(resolve, 1000));
     setIsSubmitted(true);
   };
-
   if (isSubmitted) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-blue-50 dark:from-blue-900 dark:via-indigo-900 dark:to-blue-900 flex items-center justify-center p-6">

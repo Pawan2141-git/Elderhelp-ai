@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { CSVLink } from "react-csv";
 import { motion } from "framer-motion";
@@ -19,6 +19,7 @@ import {
   User
 } from "lucide-react";
 
+
 const AdminPanel = () => {
   const [helpRequests, setHelpRequests] = useState([]);
   const [medicineRequests, setMedicineRequests] = useState([]);
@@ -30,7 +31,9 @@ const AdminPanel = () => {
   const [showAllHelp, setShowAllHelp] = useState(false);
   const [showAllMedicine, setShowAllMedicine] = useState(false);
   const [showAllVolunteers, setShowAllVolunteers] = useState(false);
-
+  
+ const backendUrl = import.meta.env.VITE_BACKEND_URL ;
+   
   useEffect(() => {
     fetchHelpRequests();
     fetchMedicineRequests();
@@ -39,7 +42,7 @@ const AdminPanel = () => {
 
   const fetchHelpRequests = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/help");
+      const res = await axios.get( backendUrl +"/api/help");
       setHelpRequests(res.data);
     } catch (err) {
       console.error("Error fetching help requests:", err);
@@ -48,7 +51,7 @@ const AdminPanel = () => {
 
   const fetchMedicineRequests = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/medicine");
+      const res = await axios.get(backendUrl +"/api/medicine");
       setMedicineRequests(res.data);
     } catch (err) {
       console.error("Error fetching medicine requests:", err);
@@ -57,7 +60,7 @@ const AdminPanel = () => {
 
   const fetchVolunteers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/volunteer");
+      const res = await axios.get( backendUrl +"/api/volunteer");
       setVolunteers(res.data);
     } catch (err) {
       console.error("Error fetching volunteers:", err);
@@ -67,7 +70,7 @@ const AdminPanel = () => {
   const handleDeleteHelp = async (id) => {
     if (!window.confirm("Delete this help request?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/help/${id}`);
+      await axios.delete( backendUrl+`/api/help/${id}`);
       setHelpRequests(helpRequests.filter((r) => r._id !== id));
     } catch (err) {
       console.error(err);
@@ -77,7 +80,7 @@ const AdminPanel = () => {
   const handleDeleteMedicine = async (id) => {
     if (!window.confirm("Delete this medicine request?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/medicine/${id}`);
+      await axios.delete(backendUrl+`/api/medicine/${id}`);
       setMedicineRequests(medicineRequests.filter((r) => r._id !== id));
     } catch (err) {
       console.error(err);
@@ -87,7 +90,7 @@ const AdminPanel = () => {
   const handleDeleteVolunteer = async (id) => {
     if (!window.confirm("Delete this volunteer?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/volunteer/${id}`);
+      await axios.delete(backendUrl +`/api/volunteer/${id}`);
       setVolunteers(volunteers.filter((v) => v._id !== id));
     } catch (err) {
       console.error(err);

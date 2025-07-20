@@ -134,6 +134,29 @@ const Navbar = () => {
                 </div>
               </motion.button>
             </Link>
+
+            <Link to="/admin">
+              <motion.button 
+                className={`relative overflow-hidden px-2.5 py-1 rounded text-xs font-normal transition-all duration-300 transform hover:scale-105 hover:shadow-sm border group ${
+                  isDark 
+                    ? 'bg-gradient-to-r from-white/20 via-white/10 to-white/20 text-white hover:from-white/30 hover:via-white/20 hover:to-white/30 hover:shadow-white/25 border-white/20 hover:border-white/30' 
+                    : 'bg-gradient-to-r from-black/20 via-black/10 to-black/20 text-black hover:from-black/30 hover:via-black/20 hover:to-black/30 hover:shadow-black/25 border-black/20 hover:border-black/30'
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {/* Shine effect */}
+                <div className={`absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-current/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700`}></div>
+                
+                {/* Button content */}
+                <div className="relative flex items-center">
+                  <svg className="w-3 h-3 mr-1 group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  <span className="font-normal tracking-wide text-xs">Adminpanel</span>
+                </div>
+              </motion.button>
+            </Link>
             
             <Link to="/login">
               <motion.button 

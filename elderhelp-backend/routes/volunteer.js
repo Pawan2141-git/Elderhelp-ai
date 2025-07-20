@@ -5,13 +5,14 @@ const Volunteer = require("../models/Volunteer");
 // ✅ POST - Register a volunteer
 router.post("/", async (req, res) => {
   try {
-    const { name, phone, city, skills, availability, availableTime } = req.body;
-    const name = name? name:"";
-     const phone  = phone ? phone:"";
-      const city = city ? city:"";
-      const skills = skills ?skills:"";
-      const availability =  availability ?availability:"";
-     const availableTime =  availableTime? availableTime:"";
+    const name = req.body.name? req.body.name:"";
+     const phone  = req.body.phone ? req.body.phone:"";
+      const city = req.body.city ? req.body.city:"";
+      const skills = req.body.skills ?req.body.skills:"";
+      const availability =  req.body.availability ?req.body.availability:"";
+     const availableTime =  req.body.availableTime? req.body.availableTime:"";
+
+    
      const volunteer = new Volunteer({
       // ✅ save timename && name,
       phone,

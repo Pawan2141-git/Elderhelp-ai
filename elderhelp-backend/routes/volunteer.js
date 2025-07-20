@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
 
     
      const volunteer = new Volunteer({
-      // ✅ save timename && name,
+      name,
       phone,
       city,
       skills,

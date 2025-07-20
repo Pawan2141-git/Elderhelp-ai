@@ -17,7 +17,7 @@ const VolunteerForm = () => {
     motivation: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
-
+   const backendUrl = import.meta.env.VITE_BACKEND_URL ;
   const handleChange = (e) => {
     setFormData({
       ...formData,

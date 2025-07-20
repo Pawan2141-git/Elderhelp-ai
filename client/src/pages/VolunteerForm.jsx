@@ -250,6 +250,47 @@ const VolunteerForm = () => {
                 </div>
               </motion.div>
 
+              {/* City Selection */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 1.05 }}
+                className="group"
+              >
+                <label className="block mb-3 text-gray-200 text-sm font-medium flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-green-400" />
+                  Select Your City
+                </label>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {['Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai', 'Kolkata', 'Pune', 'Ahmedabad', 'Jaipur', 'Lucknow', 'Kanpur', 'Nagpur'].map((city) => (
+                    <motion.button
+                      key={city}
+                      type="button"
+                      onClick={() => setFormData({...formData, city: city})}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 border-2 ${
+                        formData.city === city
+                          ? 'bg-green-600 border-green-500 text-white shadow-lg shadow-green-500/30'
+                          : 'bg-white/5 border-gray-600/50 text-gray-300 hover:bg-white/10 hover:border-green-400/50'
+                      }`}
+                    >
+                      {city}
+                    </motion.button>
+                  ))}
+                </div>
+                {formData.city && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-2 text-green-400 text-sm flex items-center gap-2"
+                  >
+                    <MapPin className="w-4 h-4" />
+                    Selected: {formData.city}
+                  </motion.p>
+                )}
+              </motion.div>
+
               {/* Experience and Availability */}
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Experience Field */}

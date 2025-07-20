@@ -6,7 +6,7 @@ import { User, Phone, MapPin, Clock, Heart, Send, AlertCircle } from 'lucide-rea
 
 const HelpRequestForm = () => {
   const [form, setForm] = useState({ name: '', phone: '', address: '', serviceTime: '', type: '' });
-
+   const backendUrl = import.meta.env.VITE_BACKEND_URL ;
   // Dummy available slots (in real app, fetch from backend)
   const availableSlots = [
     "2024-06-10T10:00",
@@ -19,7 +19,7 @@ const HelpRequestForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/help', form);
+      await axios.post(backendUrl+'/api/help', form);
       toast.success("✅ Help request submitted!");
       setForm({ name: '', phone: '', address: '', serviceTime: '', type: '' });
     } catch {

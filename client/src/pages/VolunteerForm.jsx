@@ -26,7 +26,23 @@ const VolunteerForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate API call
+    try {
+      await axios.post(backendUrl+'/api/volunteer', formData);
+      toast.success("✅ volunteer  request submitted!");
+      setFormData({
+    name: '',
+    age: '',
+    phone: '',
+    email: '',
+    address: '',
+    experience: '',
+    availability: '',
+    skills: '',
+    motivation: ''
+  });
+    } catch {
+      toast.error("❌ Submission failed.");
+    }
     await new Promise(resolve => setTimeout(resolve, 1000));
     setIsSubmitted(true);
   };

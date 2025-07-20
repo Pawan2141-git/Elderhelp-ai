@@ -70,7 +70,10 @@ const Navbar = () => {
           </motion.div>
           
           {/* Enhanced text styling */}
+
+         
           <div className="relative">
+             <Link to="/" >
             <h1 
               className={`text-2xl font-bold bg-clip-text text-transparent transition-all duration-300 ${
                 isDark 
@@ -79,7 +82,7 @@ const Navbar = () => {
               }`}
             >
               ElderHelp.ai
-            </h1>
+            </h1> </Link>
             {/* Text glow effect */}
             <div className={`absolute inset-0 blur-sm opacity-30 transition-all duration-300 ${
               isDark 

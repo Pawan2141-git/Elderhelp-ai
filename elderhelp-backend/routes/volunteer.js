@@ -6,14 +6,19 @@ const Volunteer = require("../models/Volunteer");
 router.post("/", async (req, res) => {
   try {
     const { name, phone, city, skills, availability, availableTime } = req.body;
-
-    const volunteer = new Volunteer({
-      name,
+    const name = name? name:"";
+     const phone  = phone ? phone:"";
+      const city = city ? city:"";
+      const skills = skills ?skills:"";
+      const availability =  availability ?availability:"";
+     const availableTime =  availableTime? availableTime:"";
+     const volunteer = new Volunteer({
+      // ✅ save timename && name,
       phone,
       city,
       skills,
       availability,
-      availableTime, // ✅ save time
+      availableTime, 
     });
 
     await volunteer.save();

@@ -430,7 +430,7 @@ const AdminPanel = () => {
                       <td className="p-4 text-gray-800 dark:text-white">{req.name}</td>
                       <td className="p-4 text-gray-600 dark:text-gray-300">{req.phone}</td>
                       <td className="p-4 text-gray-600 dark:text-gray-300">{req.address}</td>
-                      <td className="p-4 text-gray-600 dark:text-gray-300">{req.medicines}</td>
+                      <td className="p-4 text-gray-600 dark:text-gray-300">{req.medicineName}</td>
                       <td className="p-4">
                         <motion.button
                           onClick={() => handleDeleteMedicine(req._id)}

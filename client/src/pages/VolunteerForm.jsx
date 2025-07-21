@@ -17,6 +17,51 @@ const VolunteerForm = () => {
     motivation: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+   // States and their cities
+  const stateCityData = {
+    'Maharashtra': ['Mumbai', 'Pune', 'Nagpur'],
+    'Delhi': ['Delhi'],
+    'Karnataka': ['Bangalore'],
+    'Telangana': ['Hyderabad'],
+    'Tamil Nadu': ['Chennai'],
+    'West Bengal': ['Kolkata'],
+    'Gujarat': ['Ahmedabad'],
+    'Rajasthan': ['Jaipur'],
+    'Uttar Pradesh': ['Lucknow', 'Kanpur'],
+    'Punjab': ['Chandigarh', 'Amritsar'],
+    'Haryana': ['Gurgaon', 'Faridabad'],
+    'Bihar': ['Patna'],
+    'Odisha': ['Bhubaneswar'],
+    'Kerala': ['Thiruvananthapuram', 'Kochi'],
+    'Assam': ['Guwahati'],
+    'Madhya Pradesh': ['Bhopal', 'Indore', 'Gwalior', 'Jabalpur', 'Ujjain', 'Sagar', 'Satna'],
+    'Chhattisgarh': ['Raipur'],
+    'Jharkhand': ['Ranchi'],
+    'Himachal Pradesh': ['Shimla'],
+    'Uttarakhand': ['Dehradun'],
+    'Goa': ['Panaji'],
+    'Jammu and Kashmir': ['Srinagar', 'Jammu'],
+    'Andhra Pradesh': ['Visakhapatnam', 'Vijayawada'],
+    'Arunachal Pradesh': ['Itanagar'],
+    'Manipur': ['Imphal'],
+    'Meghalaya': ['Shillong'],
+    'Mizoram': ['Aizawl'],
+    'Nagaland': ['Kohima'],
+    'Sikkim': ['Gangtok'],
+    'Tripura': ['Agartala'],
+    'Andaman and Nicobar Islands': ['Port Blair'],
+    'Lakshadweep': ['Kavaratti'],
+    'Dadra and Nagar Haveli and Daman and Diu': ['Daman', 'Diu'],
+    'Puducherry': ['Puducherry', 'Karaikal', 'Yanam', 'Mahe']
+
+
+
+  };
+  const stateList = Object.keys(stateCityData);
+  const cityList = formData.state ? stateCityData[formData.state] : [];
+
+
+  
    const backendUrl = import.meta.env.VITE_BACKEND_URL ;
   const handleChange = (e) => {
     setFormData({

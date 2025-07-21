@@ -3,21 +3,28 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { User, Phone, Mail, MapPin, Clock, Users, Send, AlertCircle, FileText, Heart } from 'lucide-react';
 import axios from "axios";
+
 import { toast } from 'react-toastify';
 const VolunteerForm = () => {
+
+
+  const backendUrl = import.meta.env.VITE_BACKEND_URL ;
   const [formData, setFormData] = useState({
-    name: '',
+    name: 'pawan',
     age: '',
     phone: '',
     email: '',
     address: '',
+    state: '', // Added state
+    city: '',
     experience: '',
     availability: '',
     skills: '',
     motivation: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
-   // States and their cities
+
+  // States and their cities
   const stateCityData = {
     'Maharashtra': ['Mumbai', 'Pune', 'Nagpur'],
     'Delhi': ['Delhi'],
@@ -60,9 +67,6 @@ const VolunteerForm = () => {
   const stateList = Object.keys(stateCityData);
   const cityList = formData.state ? stateCityData[formData.state] : [];
 
-
-  
-   const backendUrl = import.meta.env.VITE_BACKEND_URL ;
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -72,7 +76,7 @@ const VolunteerForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
+   try {
       await axios.post(backendUrl+'/api/volunteer', formData);
       toast.success("✅ volunteer  request submitted!");
       setFormData({
@@ -81,6 +85,8 @@ const VolunteerForm = () => {
     phone: '',
     email: '',
     address: '',
+    state: '',
+    city: '',
     experience: '',
     availability: '',
     skills: '',
@@ -295,46 +301,73 @@ const VolunteerForm = () => {
                 </div>
               </motion.div>
 
-              {/* City Selection */}
+              {/* State Selection */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 1.05 }}
+                transition={{ duration: 0.6, delay: 1.03 }}
                 className="group"
               >
                 <label className="block mb-3 text-gray-200 text-sm font-medium flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-green-400" />
-                  Select Your City
+                  Select Your State
                 </label>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {['Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai', 'Kolkata', 'Pune', 'Ahmedabad', 'Jaipur', 'Lucknow', 'Kanpur', 'Nagpur'].map((city) => (
-                    <motion.button
-                      key={city}
-                      type="button"
-                      onClick={() => setFormData({...formData, city: city})}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 border-2 ${
-                        formData.city === city
-                          ? 'bg-green-600 border-green-500 text-white shadow-lg shadow-green-500/30'
-                          : 'bg-white/5 border-gray-600/50 text-gray-300 hover:bg-white/10 hover:border-green-400/50'
-                      }`}
-                    >
-                      {city}
-                    </motion.button>
+                <select
+                  name="state"
+                  value={formData.state}
+                  onChange={e => setFormData({ ...formData, state: e.target.value, city: '' })}
+                  required
+                  className="w-full px-6 py-4 bg-white/5 border border-gray-600/50 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500/50 transition-all duration-300 text-lg backdrop-blur-sm group-hover:bg-white/10 appearance-none"
+                >
+                  <option value="" className="bg-gray-800 text-white">Select State</option>
+                  {stateList.map(state => (
+                    <option key={state} value={state} className="bg-gray-800 text-white">{state}</option>
                   ))}
-                </div>
-                {formData.city && (
-                  <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-2 text-green-400 text-sm flex items-center gap-2"
-                  >
-                    <MapPin className="w-4 h-4" />
-                    Selected: {formData.city}
-                  </motion.p>
-                )}
+                </select>
               </motion.div>
+
+              {/* City Selection (depends on state) */}
+              {formData.state && (
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 1.05 }}
+                  className="group"
+                >
+                  <label className="block mb-3 text-gray-200 text-sm font-medium flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-green-400" />
+                    Select Your City
+                  </label>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    {cityList.map((city) => (
+                      <motion.button
+                        key={city}
+                        type="button"
+                        onClick={() => setFormData({...formData, city: city})}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 border-2 ${
+                          formData.city === city
+                            ? 'bg-green-600 border-green-500 text-white shadow-lg shadow-green-500/30'
+                            : 'bg-white/5 border-gray-600/50 text-gray-300 hover:bg-white/10 hover:border-green-400/50'
+                        }`}
+                      >
+                        {city}
+                      </motion.button>
+                    ))}
+                  </div>
+                  {formData.city && (
+                    <motion.p
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mt-2 text-green-400 text-sm flex items-center gap-2"
+                    >
+                      <MapPin className="w-4 h-4" />
+                      Selected: {formData.city}
+                    </motion.p>
+                  )}
+                </motion.div>
+              )}
 
               {/* Experience and Availability */}
               <div className="grid md:grid-cols-2 gap-6">
